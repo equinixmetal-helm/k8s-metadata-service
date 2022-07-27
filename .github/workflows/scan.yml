@@ -1,0 +1,22 @@
+---
+name: Vulnerability scans
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: "Run vulnerability scan"
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          exit-code: '1'
+          security-checks: 'vuln,secret,config'
+          format: 'table'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW'

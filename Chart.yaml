@@ -1,0 +1,9 @@
+apiVersion: v2
+appVersion: "1.0"
+description: A Helm chart for things (update mE!)
+name: helmchart
+version: 1.0.0
+# dependencies:
+# - name: ifyouneedthem
+#   version: "1.0.0"
+#   repository: "https://helm.stuff.com"
