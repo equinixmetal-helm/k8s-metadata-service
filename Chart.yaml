@@ -1,9 +1,14 @@
 apiVersion: v2
+name: hollow-metadataservice
+description: Hollow Metadata Service
+type: application
+version: 0.1.0
 appVersion: "1.0"
-description: A Helm chart for things (update mE!)
-name: helmchart
-version: 1.0.0
-# dependencies:
-# - name: ifyouneedthem
-#   version: "1.0.0"
-#   repository: "https://helm.stuff.com"
+sources:
+  - https://github.com/metal-toolbox/hollow-metadataservice
+dependencies:
+  - name: common
+    repository: https://charts.bitnami.com/bitnami
+    tags:
+      - bitnami-common
+    version: 1.16.1
