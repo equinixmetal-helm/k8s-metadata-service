@@ -1,0 +1,54 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    k8s-app: metadata-service
+  name: metadata-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx-static
+  rules:
+    - host: metadata-service.packet.net
+      http:
+        paths:
+          - path: /
+            {{- if .Values.metadataservice.publicPaths -}}
+              (
+                {{- range $index,$path := .Values.metadataservice.publicPaths }}
+                  {{- if $index }}|{{ end }}
+                  {{- $path }}
+                {{- end -}}
+              )
+            {{- end }}
+            pathType: Prefix
+            backend:
+              service:
+                name: metadata-service
+                port:
+                  name: http
+    - host: metadata-service.platformequinix.com
+      http:
+        paths:
+          - path: /
+            {{- if .Values.metadataservice.publicPaths -}}
+              (
+                {{- range $index,$path := .Values.metadataservice.publicPaths }}
+                  {{- if $index }}|{{ end }}
+                  {{- $path }}
+                {{- end -}}
+              )
+            {{- end }}
+            pathType: Prefix
+            backend:
+              service:
+                name: metadata-service
+                port:
+                  name: http
+  tls:
+  - hosts:
+    {{- range .Values.ingressHostnames }}
+    - {{ . }}
+    {{- end }}
+    secretName: platform-wildcard-cert

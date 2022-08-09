@@ -1,0 +1,12 @@
+---
+apiVersion: keymaker.equinixmetal.com/v1
+kind: ExternalSecretPull
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+  name: {{ template "common.names.fullname" . }}-dbconn
+spec:
+  backend: ssm
+  mappings:
+    - key: /{{ .Values.clusterInfo.environment }}/{{ .Release.Namespace }}/{{ .Values.clusterInfo.facility }}/{{ .Values.clusterInfo.class }}/dbconn-uri/v3
+      name: uri

@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    k8s-app: metadata-service
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: metadata-service-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: metadata-service.{{ .Values.clusterFQDN }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: metadata-service
+            port:
+              name: http
+  tls:
+  - hosts:
+    - metadata-service.{{ .Values.clusterFQDN }}
+    secretName: metadata-service.{{ .Values.clusterFQDN }}

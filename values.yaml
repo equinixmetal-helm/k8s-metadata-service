@@ -1,0 +1,31 @@
+metadataservice:
+  image:
+    repository: ghcr.io/metal-toolbox/hollow-metadataservice
+    tag: "v0.0.1"
+  env:
+    DEBUG: "true"
+  publicPaths:
+    - $
+    - metadata
+    - userdata
+    - '2009-04-04'
+
+ingressHostnames:
+  - metadata-service.packet.net
+  - metadata-service.platformequinix.com
+
+oidc:
+  audience: "https://metadata.stage.platformequinix.net"
+  issuer: "https://auth.equinixmetal.com/"
+  jwksuri: "https://auth.equinixmetal.com/.well-known/jwks.json"
+  rolesClaim: "permissions"
+  userClaim: "https://auth.equinixmetal.com/email"
+
+replicaCount: 1
+resources:
+  limits:
+    cpu: 4
+    memory: 4Gi
+  requests:
+    cpu: 4
+    memory: 4Gi

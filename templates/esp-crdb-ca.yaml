@@ -1,0 +1,12 @@
+---
+apiVersion: keymaker.equinixmetal.com/v1
+kind: ExternalSecretPull
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+  name: {{ template "common.names.fullname" . }}-crdb-ca
+spec:
+  backend: ssm
+  mappings:
+    - key: /stage/metadata-crdb-crt/expires-2027-01-25
+      name: ca-crt
