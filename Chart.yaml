@@ -1,6 +1,6 @@
 apiVersion: v2
-name: metadataservice
-description: Metadata Service - the successor to Kant
+name: hollow-metadataservice
+description: Hollow Metadata Service
 type: application
 version: 0.1.0
 appVersion: "1.0"
