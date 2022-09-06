@@ -1,6 +1,6 @@
-# basic-template
+# k8s-metadata-service
+Kubernetes repo holding metadata-service manifests
 
-- Update this readme
-- Update the Chart.yaml
-- Add your values.yaml + templates
-- Helm it up!
+What it is: an EC2-compatible metadata service. The successor to Kant.
+
+App repo: https://github.com/metal-toolbox/hollow-metadataservice
