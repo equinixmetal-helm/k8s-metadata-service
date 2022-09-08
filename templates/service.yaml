@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: metadata-service
+  name: {{ template "common.names.fullname" . }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
 spec:
-  type: ClusterIP
   ports:
   - name: http
     port: 80
@@ -14,5 +13,5 @@ spec:
     port: 443
     protocol: TCP
     targetPort: 8000
-  selector:
-    k8s-app: metadata-service
+  selector: {{ include "common.labels.matchLabels" . | nindent 4 }}
+  type: ClusterIP
