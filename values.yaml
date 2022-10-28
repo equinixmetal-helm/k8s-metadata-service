@@ -20,6 +20,36 @@ oidc:
   rolesClaim: ""
   userClaim: ""
 
+lookup:
+  enabled: false
+
+  baseURL: ""
+  baseURLFrom: {}
+
+  oidc:
+    issuer: ""
+    clientID: ""
+    clientSecret: ""
+    audience: ""
+    scopes: [] # may also be a comma or space separated string
+      # - scope-one
+      # - scope-two
+
+    # # Source the variables value. See env.valueFrom for supported values
+    # # Value from *From is preferred over the string variable
+    # issuerFrom: {}
+    # clientIDFrom:
+    #   secretKeyRef:
+    #     name: lookup-oidc
+    #     key: client-id
+    # clientSecretFrom:
+    #   secretKeyRef:
+    #     name: lookup-oidc
+    #     key: client-secret
+    # audienceFrom: {}
+    # # scopes should be formatted as white space separated strings
+    # scopesFrom: {}
+
 replicaCount: 1
 resources:
   limits:
