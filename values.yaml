@@ -1,7 +1,7 @@
 metadataservice:
   image:
     repository: ghcr.io/metal-toolbox/hollow-metadataservice
-    tag: "v0.0.2"
+    tag: "v0.0.3"
 
 ingress:
   enabled: true
@@ -23,8 +23,8 @@ oidc:
 lookup:
   enabled: false
 
-  baseURL: ""
-  baseURLFrom: {}
+  serviceURL: ""
+  serviceURLFrom: {}
 
   oidc:
     issuer: ""
