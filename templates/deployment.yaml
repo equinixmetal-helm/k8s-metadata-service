@@ -35,7 +35,7 @@ spec:
           - name: METADATASERVICE_LOOKUP_ENABLED
             value: 'true'
         {{- with .Values.lookup }}
-          {{- include "envValue" (list "METADATASERVICE_LOOKUP_BASEURL" .baseURL .baseURLFrom) | indent 10 }}
+          {{- include "envValue" (list "METADATASERVICE_LOOKUP_SERVICE_URL" .serviceURL .serviceURLFrom) | indent 10 }}
           {{- with .oidc }}
             {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_ISSUER" .issuer .issuerFrom) | indent 10 }}
             {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_CLIENTID" .clientID .clientIDFrom) | indent 10 }}
