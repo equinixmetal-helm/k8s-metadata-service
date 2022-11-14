@@ -50,6 +50,29 @@ lookup:
     # # scopes should be formatted as white space separated strings
     # scopesFrom: {}
 
+
+
+tracing:
+  enabled: false
+  # provider: ""  ## current options: "stdout", "jaeger", "otlphttp", or "otlpgrpc"
+  # environment: ""
+  # stdout:  ## options for stdout
+  #  pretty_print:
+  #  disable_timestamps:
+  # jaeger: ## options for jaeger exporter
+  #  agent_host:
+  #  agent_port:
+  #  endpoint:
+  #  user:
+  #  password:
+  # otlp: ## options for otlpgrpc and otlphttp exporters
+  #  endpoint:
+  #  insecure:
+  #  certificate:
+  #  headers:
+  #  compression:
+  #  timeout:
+
 replicaCount: 1
 resources:
   limits:
