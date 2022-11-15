@@ -44,7 +44,8 @@ spec:
             {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_SCOPES" .scopes .scopesFrom true) | indent 10 }}
           {{- end }}
         {{- end }}
-        {{- end }}
+        {{- end -}}
+{{ include "metadata-service.otel-config" . | indent 10 }}
           image: "{{ .Values.metadataservice.image.repository }}:{{ .Values.metadataservice.image.tag }}"
           imagePullPolicy: Always
           volumeMounts:
