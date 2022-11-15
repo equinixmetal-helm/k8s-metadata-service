@@ -1,76 +1,81 @@
-{{- define "metadata-service.otel-config" -}}
-{{- if hasKey .Values "tracing" -}}
-{{- if hasKey .Values.tracing "enabled"}}
+{{- define "metadata-service.otel-config" }}
+  {{- if hasKey .Values "tracing" -}}
+    {{- if hasKey .Values.tracing "enabled"}}
 - name: METADATASERVICE_TRACING_ENABLED
   value: "{{ .Values.tracing.enabled }}"
-{{- end }}
-{{- if .Values.tracing.enabled -}}
-{{- if hasKey .Values.tracing "environment" }}
+    {{- end }}
+
+    {{- if .Values.tracing.enabled -}}
+      {{- if hasKey .Values.tracing "environment" }}
 - name: METADATASERVICE_TRACING_ENVIRONMENT
   value: "{{ .Values.tracing.environment }}"
-{{- end }}
-{{- if hasKey .Values.tracing "provider" }}
+      {{- end }}
+
+      {{- if hasKey .Values.tracing "provider" }}
 - name: METADATASERVICE_TRACING_PROVIDER
   value: "{{ .Values.tracing.provider }}"
-{{- if eq .Values.tracing.provider "stdout" -}}
-{{- if hasKey .Values.tracing.stdout "pretty_print" }}
+
+        {{- if eq .Values.tracing.provider "stdout" -}}
+          {{- if hasKey .Values.tracing.stdout "pretty_print" }}
 - name: METADATASERVICE_TRACING_STDOUT_PRETTY_PRINT
   value: "{{ .Values.tracing.stdout.pretty_print }}"
-{{- end }}
-{{- if hasKey .Values.tracing.stdout "disable_timestamps" }}
+          {{- end }}
+          {{- if hasKey .Values.tracing.stdout "disable_timestamps" }}
 - name: METADATASERVICE_TRACING_STDOUT_DISABLE_TIMESTAMPS
   value: "{{ .Values.tracing.stdout.disable_timestamps }}"
-{{- end }}
-{{- else if eq .Values.tracing.provider "jaeger" -}}
-{{- if hasKey .Values.tracing.jaeger "agent_host" }}
+          {{- end }}
+
+        {{- else if eq .Values.tracing.provider "jaeger" -}}
+          {{- if hasKey .Values.tracing.jaeger "agent_host" }}
 - name: METADATASERVICE_TRACING_JAEGER_AGENT_HOST
   value: "{{ .Values.tracing.jaeger.agent_host }}"
-{{- end }}
-{{- if hasKey .Values.tracing.jaeger "agent_port" }}
+          {{- end }}
+          {{- if hasKey .Values.tracing.jaeger "agent_port" }}
 - name: METADATASERVICE_TRACING_JAEGER_AGENT_PORT
   value: "{{ .Values.tracing.jaeger.agent_port }}"
-{{- end }}
-{{- if hasKey .Values.tracing.jaeger "endpoint" }}
+          {{- end }}
+          {{- if hasKey .Values.tracing.jaeger "endpoint" }}
 - name: METADATASERVICE_TRACING_JAEGER_ENDPOINT
   value: "{{ .Values.tracing.jaeger.endpoint }}"
-{{- end }}
-{{- if hasKey .Values.tracing.jaeger "user" }}
+          {{- end }}
+          {{- if hasKey .Values.tracing.jaeger "user" }}
 - name: METADATASERVICE_TRACING_JAEGER_USER
   value: "{{ .Values.tracing.jaeger.user }}"
-{{- end }}
-{{- if hasKey .Values.tracing.jaeger "password" }}
+          {{- end }}
+          {{- if hasKey .Values.tracing.jaeger "password" }}
 - name: METADATASERVICE_TRACING_JAEGER_PASSWORD
   value: "{{ .Values.tracing.jaeger.password }}"
-{{- end }}
-{{- else if contains "otlp" .Values.tracing.provider -}}
-{{- if hasKey .Values.tracing "otlp" -}}
-{{- if hasKey .Values.tracing.otlp "endpoint" }}
+          {{- end }}
+
+        {{- else if contains "otlp" .Values.tracing.provider -}}
+          {{- if hasKey .Values.tracing "otlp" -}}
+            {{- if hasKey .Values.tracing.otlp "endpoint" }}
 - name: METADATASERVICE_TRACING_OTLP_ENDPOINT
   value: "{{ .Values.tracing.otlp.endpoint }}"
-{{- end }}
-{{- if hasKey .Values.tracing.otlp "insecure" }}
+            {{- end }}
+            {{- if hasKey .Values.tracing.otlp "insecure" }}
 - name: METADATASERVICE_TRACING_OTLP_INSECURE
   value: "{{ .Values.tracing.otlp.insecure }}"
-{{- end }}
-{{- if hasKey .Values.tracing.otlp "certificate" }}
+            {{- end }}
+            {{- if hasKey .Values.tracing.otlp "certificate" }}
 - name: METADATASERVICE_TRACING_OTLP_CERTIFICATE
   value: "{{ .Values.tracing.otlp.certificate }}"
-{{- end }}
-{{- if hasKey .Values.tracing.otlp "headers" }}
+            {{- end }}
+            {{- if hasKey .Values.tracing.otlp "headers" }}
 - name: METADATASERVICE_TRACING_OTLP_HEADERS
   value: "{{ .Values.tracing.otlp.headers }}"
-{{- end }}
-{{- if hasKey .Values.tracing.otlp "compression" }}
+            {{- end }}
+            {{- if hasKey .Values.tracing.otlp "compression" }}
 - name: METADATASERVICE_TRACING_OTLP_COMPRESSION
   value: "{{ .Values.tracing.otlp.compression }}"
-{{- end }}
-{{- if hasKey .Values.tracing.otlp "timeout" }}
+            {{- end }}
+            {{- if hasKey .Values.tracing.otlp "timeout" }}
 - name: METADATASERVICE_TRACING_OTLP_TIMEOUT
   value: "{{ .Values.tracing.otlp.timeout }}"
-{{- end }}
-{{- end -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
+            {{- end }}
+          {{- end -}}
+        {{- end -}}
+      {{- end }}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
