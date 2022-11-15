@@ -26,7 +26,7 @@ spec:
             value: "{{ .Values.oidc.rolesClaim }}"
           - name: METADATASERVICE_OIDC_CLAIMS_USERNAME
             value: "{{ .Values.oidc.userClaim }}"
-          - name: METADATASERVICE_DB_URI
+          - name: METADATASERVICE_CRDB_URI
             valueFrom:
               secretKeyRef:
                 name: {{ template "common.names.fullname" . }}-dbconn
