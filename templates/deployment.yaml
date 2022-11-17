@@ -31,20 +31,7 @@ spec:
               secretKeyRef:
                 name: {{ template "common.names.fullname" . }}-dbconn
                 key: uri
-        {{- if .Values.lookup.enabled }}
-          - name: METADATASERVICE_LOOKUP_ENABLED
-            value: 'true'
-        {{- with .Values.lookup }}
-          {{- include "envValue" (list "METADATASERVICE_LOOKUP_SERVICE_URL" .serviceURL .serviceURLFrom) | indent 10 }}
-          {{- with .oidc }}
-            {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_ISSUER" .issuer .issuerFrom) | indent 10 }}
-            {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_CLIENTID" .clientID .clientIDFrom) | indent 10 }}
-            {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_CLIENTSECRET" .clientSecret .clientSecretFrom) | indent 10 }}
-            {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_AUDIENCE" .audience .audienceFrom) | indent 10 }}
-            {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_SCOPES" .scopes .scopesFrom true) | indent 10 }}
-          {{- end }}
-        {{- end }}
-        {{- end -}}
+{{ include "metadata-service.lookup-config" . | indent 10 }}
 {{ include "metadata-service.otel-config" . | indent 10 }}
           image: "{{ .Values.metadataservice.image.repository }}:{{ .Values.metadataservice.image.tag }}"
           imagePullPolicy: Always

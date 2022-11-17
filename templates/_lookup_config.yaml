@@ -1,0 +1,16 @@
+{{- define "metadata-service.lookup-config" }}
+  {{- if .Values.lookup.enabled -}}
+- name: METADATASERVICE_LOOKUP_ENABLED
+  value: 'true'
+    {{- with .Values.lookup }}
+      {{- include "envValue" (list "METADATASERVICE_LOOKUP_SERVICE_URL" .serviceURL .serviceURLFrom) }}
+      {{- with .oidc }}
+        {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_ISSUER" .issuer .issuerFrom) }}
+        {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_CLIENTID" .clientID .clientIDFrom) }}
+        {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_CLIENTSECRET" .clientSecret .clientSecretFrom) }}
+        {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_AUDIENCE" .audience .audienceFrom) }}
+        {{- include "envValue" (list "METADATASERVICE_LOOKUP_OIDC_SCOPES" .scopes .scopesFrom true) }}
+      {{- end }}
+    {{- end }}
+  {{- end -}}
+{{- end }}
