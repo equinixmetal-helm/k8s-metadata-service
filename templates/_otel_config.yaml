@@ -1,6 +1,6 @@
 {{- define "metadata-service.otel-config" }}
   {{- if hasKey .Values "tracing" -}}
-    {{- if hasKey .Values.tracing "enabled"}}
+    {{- if hasKey .Values.tracing "enabled" -}}
 - name: METADATASERVICE_TRACING_ENABLED
   value: "{{ .Values.tracing.enabled }}"
     {{- end }}

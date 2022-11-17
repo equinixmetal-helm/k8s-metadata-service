@@ -1,0 +1,14 @@
+{{- define "metadata-service.urls-config" }}
+  {{- if hasKey .Values.metadataservice "upstreamAPIURL" }}
+- name: METADATASERVICE_UPSTREAM_API_URL
+  value: "{{ .Values.metadataservice.upstreamAPIURL }}"
+  {{- end }}
+  {{- if hasKey .Values.metadataservice "phoneHomeURL" }}
+- name: METADATASERVICE_PHONE_HOME_URL
+  value: "{{ .Values.metadataservice.phoneHomeURL }}"
+  {{- end }}
+  {{- if hasKey .Values.metadataservice "userStateURL" }}
+- name: METADATASERVICE_USER_STATE_URL
+  value: "{{ .Values.metadataservice.userStateURL }}"
+  {{- end }}
+{{- end -}}
