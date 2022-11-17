@@ -14,8 +14,6 @@ spec:
       containers:
         - name: metadata-service
           env:
-          - name: METADATASERVICE_UPSTREAM_API_URL
-            value: '{{ .Values.upstreamAPI }}'
           - name: METADATASERVICE_OIDC_AUDIENCE
             value: "{{ .Values.oidc.audience }}"
           - name: METADATASERVICE_OIDC_ISSUER
@@ -31,6 +29,7 @@ spec:
               secretKeyRef:
                 name: {{ template "common.names.fullname" . }}-dbconn
                 key: uri
+{{- include "metadata-service.urls-config" . | indent 10 }}
 {{ include "metadata-service.lookup-config" . | indent 10 }}
 {{ include "metadata-service.otel-config" . | indent 10 }}
           image: "{{ .Values.metadataservice.image.repository }}:{{ .Values.metadataservice.image.tag }}"
