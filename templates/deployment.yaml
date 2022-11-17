@@ -68,6 +68,8 @@ spec:
               port: http
             initialDelaySeconds: 5
             timeoutSeconds: 2
+          securityContext:
+            allowPrivilegeEscalation: false
           resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
