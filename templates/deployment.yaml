@@ -70,6 +70,7 @@ spec:
             timeoutSeconds: 2
           securityContext:
             allowPrivilegeEscalation: false
+            runAsNonRoot: true
           resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
