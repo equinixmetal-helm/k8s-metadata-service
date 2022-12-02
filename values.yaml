@@ -53,7 +53,8 @@ lookup:
     # # scopes should be formatted as white space separated strings
     # scopesFrom: {}
 
-
+serviceMonitor:
+  enabled: false
 
 tracing:
   enabled: false
