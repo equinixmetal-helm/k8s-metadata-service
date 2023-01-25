@@ -53,6 +53,10 @@ lookup:
     # # scopes should be formatted as white space separated strings
     # scopesFrom: {}
 
+service:
+  type: ClusterIP
+  annotations: {}
+
 serviceMonitor:
   enabled: false
 
