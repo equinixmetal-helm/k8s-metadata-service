@@ -1,0 +1,24 @@
+name: Release metadata helm chart
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Publish Helm Chart
+        uses: tylerauerbeck/helm-gh-pages@main
+        with:
+          token: ${{ secrets.PUBLIC_REPO_GH_PAT }}
+          charts_dir: .
+          charts_url: 'https://helm.equinixmetal.com'
+          repository: 'charts'
+          branch: gh-pages
