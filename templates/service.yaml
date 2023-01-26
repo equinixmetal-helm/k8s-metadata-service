@@ -3,7 +3,7 @@ kind: Service
 metadata:
 {{- if .Values.service.annotations }}
   annotations:
-    {{- toYaml .Values.service.annotations . | nindent 4 }}
+    {{- toYaml .Values.service.annotations | nindent 4 }}
 {{- end }}
   name: {{ template "common.names.fullname" . }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
