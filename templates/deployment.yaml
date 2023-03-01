@@ -54,6 +54,14 @@ spec:
               port: http
             initialDelaySeconds: 5
             timeoutSeconds: 2
+          securityContext:
+            capabilities:
+              drop:
+                - all
+            runAsUser: 10001
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
           resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
