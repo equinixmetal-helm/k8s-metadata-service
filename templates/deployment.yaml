@@ -11,22 +11,11 @@ spec:
     metadata:
       labels: {{- include "common.labels.standard" . | nindent 8 }}
     spec:
-      initContainers:
-      - name: fix-volume-perms
-        image: busybox
-        resources:
-          limits:
-            cpu: 100m
-            memory: 128Mi
-          requests:
-            cpu: 100m
-            memory: 128Mi
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - name: dbcerts
-          mountPath: "/dbcerts"
-        command: ["sh", "-c", "chown -R 10001:10001 /dbcerts"]
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
       containers:
         - name: metadata-service
           env:
@@ -70,14 +59,9 @@ spec:
               port: http
             initialDelaySeconds: 5
             timeoutSeconds: 2
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 10001
-            runAsGroup: 10001
           resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
       - name: dbcerts
         secret:
           secretName: {{ template "common.names.fullname" . }}-crdb-ca
-          defaultMode: 0400
