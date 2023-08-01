@@ -1,7 +1,7 @@
 metadataservice:
   image:
     repository: ghcr.io/metal-toolbox/hollow-metadataservice
-    tag: "v0.0.17"
+    tag: "v0.0.20"
   # apiURL: "https://metadata-service" ## Usually the url of the metadata service itself. Output in a metadata response as "api_url"
   # phoneHomeURL: "https://phone.{{.facility}}/phone-home" ## The URL output in the metadata response as "phone_home_url". Can be a gotmpl with references to fields contained in the metadata document.
   # userStateURL: "https://userstate.{{.facility}}/user-state" ## The URL output in the metadata response as "user_state_url". Can be a gotmpl with references to fields contained in the metadata document.
