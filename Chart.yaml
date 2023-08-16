@@ -2,7 +2,7 @@ apiVersion: v2
 name: hollow-metadataservice
 description: Hollow Metadata Service
 type: application
-version: 0.1.26
+version: 0.1.27
 appVersion: "1.0"
 sources:
   - https://github.com/metal-toolbox/hollow-metadataservice
@@ -11,4 +11,4 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     tags:
       - bitnami-common
-    version: 2.6.0
+    version: 2.8.0
